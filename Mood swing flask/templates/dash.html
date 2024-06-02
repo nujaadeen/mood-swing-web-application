@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBoard</title>
+    <script>
+        var firebaseConfig = {
+            apiKey: "{{ firebase_config.apiKey }}",
+            authDomain: "{{ firebase_config.authDomain }}",
+            projectId: "{{ firebase_config.projectId }}",
+            storageBucket: "{{ firebase_config.storageBucket }}",
+            messagingSenderId: "{{ firebase_config.messagingSenderId }}",
+            appId: "{{ firebase_config.appId }}",
+            measurementId: "{{ firebase_config.measurementId }}"
+        };
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Blogs.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/UIAlert.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Dash.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animation.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/Dash.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+    
+    rel="stylesheet"
+/>
+
+
+</head>
+<body>
+    <div class="dash">
+        <div class="left-menu">
+             <div class="logo-with-name">
+                <img width="58" height="58" src="https://img.icons8.com/color/48/user-male-circle--v1.png" alt="user-male-circle--v1" id="profile_img_1" class="image_disp"/>
+                 <span id="name-user">Hi User</span>
+             </div>
+
+             <div class="left-bar">
+                <div class="heading"><span>Menu</span></div>
+                <ul class="list-items">
+                    <div class="items"></div>
+                    <li id="MoodSing-list"><i class="ri-dashboard-fill" id="moodswing-icon"></i>Mood Swing</li>
+                    <li id="Playlist-list"><i class="ri-play-list-fill" id="Playlist-icon"></i>Playlist</li>
+                    <li id="Blogs-list" ><i class="ri-blogger-fill" style="margin-right: 2px;" id="blogs-icon"></i>My Diary</li>
+                </ul>
+
+             </div>
+             <div class="left-bar">
+                <div class="heading"><span>Preferences</span></div>
+                <ul class="list-items">
+                    <li id="sign-out"><i class="ri-logout-circle-line"></i>Sign Out</li>
+                    <li id="settings"><i class="ri-user-settings-fill" id="setting-icon"></i>User Settings</li>
+                </ul>
+
+             </div>
+        </div>
+        <div class="right-content-container">
+                   <div class="navbar">
+                    <div class="left-nav">
+                        <span id="dash-text">Mood Swing</span>
+                    </div>
+                    <div class="right-nav">
+                        <div class="user-logo">
+                            <div class="middle-logo" style="visibility: hidden;">
+                                <i class="ri-chat-1-fill"></i>
+                                <i class="ri-notification-2-fill"></i>
+                            </div>
+                            <div class="user" style="margin-bottom: 10px; margin-top: 10px;">
+                                <span id="left-user" style="margin-right: 8px;">Username</span>
+                            <img width="58" height="58" src="https://img.icons8.com/color/48/user-male-circle--v1.png" alt="user-male-circle--v1" id="profile_img_2" class="image_disp"/>
+                            </div>
+                            
+                        </div>
+                       
+                       
+                        
+                    </div>
+                   </div>
+                   <div class="content-container">
+                    <div class="moodSwing"   id="mood-page">
+                        <div class="recoreder-main-div">
+                            <div class="header-mood-swing" >
+                                <span id="Moodtext">Record Your Voice, Express Yourself!</span>
+                                <p>Speak your heart out and let the music reflect your mood! Just tell me how you are feeling, and we will recommend the perfect songs to match your current emotions!</p>
+                            </div>
+                            <div class="recording-buttons" style="margin-top: 15px;"  >
+                                <div class="buttons-div">
+                                    <button  id="startRecording">Record</button>
+                                    <button id="pauseRecording">Pause</button>
+                                    <button  id="stopRecording">Stop</button>
+                                </div>
+                                <div class="record-anim-show" style="margin-top: 20px;">
+                                    <div class="recorder" id="recorder" style="display: none;"> <button class="Rec" >Recording</button>
+                                        <span id="timer">00:00:00</span></div>
+                                   
+                                    <div class="player" id="player-card" style="display: flex; background-color: black;">
+                                        <div class="left-img-div">
+                                          <span id="currentTime">0:00</span>
+                                        </div>
+                                        <div class="right-controls-div">
+                                          <div class="upper">
+                                            <input type="range" name="musicRange" id="musicRange" min="0">
+                                          </div>
+                                          <div class="lower">
+                                            <i class="ri-skip-back-fill" id="skipBackward"></i>
+                                            <i class="ri-play-circle-fill" id="playPauseButton" ></i>
+                                            <i class="ri-skip-forward-fill" id="skipForward" ></i>
+                                          </div>
+                                          <audio id="audioPlayer" src="" preload="auto"></audio>
+                                        </div>
+                                      </div>
+                                    
+                                        
+                                </div>
+                                
+                                
+                                <div class="find-the-song-btn">
+                                    <div class="upper-btns">
+                                    <Button id="FindSong"  style="background-color: #7A69E9; margin-left: -3px;" disabled>Find the Song</Button>
+                                    <div class="lds-ellipsis" id="disp_loader"><div></div><div></div><div></div><div></div></div>
+                                    
+                                    </div>
+                      
+                                   
+                                </div>
+
+                              
+
+                               
+                               
+                            </div>
+                            <div class="show-songs-div">
+                                <div class="show_results" id="show_results"  >
+                                    <div class="inner-text">
+                                        <div class="upper-text-show" style="align-items: center;">
+                                            <div class="Result-heading" style="margin-top: 5px; align-items: center;">
+                                                <h2>Result</h2>
+                                            </div>
+                                            <div class="Resilt" style="align-items: center;"  id="result-sentimnet">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="lower-sentiment-show " >
+                                            <div class="Result-heading" style="margin-right: 13px;">
+                                                <h2>Type</h2>
+                                            </div>
+                                            <div class="Resilt" id="result-type">
+                                               Neutral
+                                            </div>
+                                        </div>
+                                        <div class="lower-sentiment-show  " style="margin-right: 13px;">
+                                            <div class="Result-heading" style="margin-right: 13px;">
+                                                <h2>Score</h2>
+                                            </div>
+                                            <div class="Resilt" id="Score">
+                                               Neutral
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="inner-div-show-song" id="show-song" style="display: none;">
+                                       <div class="header-res-ambly-ai">
+
+                                        <span>You are feeling <span id="SAD">-----</span> so we recommend these songs for you</span>
+                                       </div>
+
+                                       <div class="player-card" id="songList">
+                                        <!-- <div class="card-design">
+                                          <div class="logo-music-text-div">
+                                            <div class="music-logo">
+                                                <img src="https://i.scdn.co/image/ab67616d0000b27393e133b508e8a5772b1a5504" alt="Sadqay" style="width: 90%; height: 90% ; border-radius: 25px;" >
+                                            </div>
+                                            <div class="music-text">
+                                                <span>Ashir wajahat 
+                                                </span>
+                                            </div>
+                                          </div>
+                                          <div class="slidebar">
+                                            <input type="range" min="0" id="playerrange">
+                                          </div>
+                                          <div class="lower lower-card">
+                                            <i class="ri-skip-back-fill" ></i>
+                                            <i class="ri-play-circle-fill" id="playPauseButton" ></i>
+                                            <i class="ri-skip-forward-fill" ></i>
+                                          </div>
+                                          <div class="volume">
+                                            <i class="ri-volume-down-line"></i>
+                                            <input type="range" min="0" id="playerrange">
+                                          </div>
+                                          <audio src=""></audio>
+                                          
+                                        </div> -->
+                                        
+                                       </div>
+
+                                       
+                                       
+                                </div>
+                               
+                            </div>
+                            
+                        </div>
+
+                        <!-- //left side wla div ha ya -->
+                        <div class="recorded-items" id="recordingItems">
+                           <div class="headingRecorder">
+                            <span>Recordings</span>
+                           </div>
+                        </div>
+                    </div>
+
+                    <div class="Playlists " id="playlist-page" style="display: none;">
+                         <div class="headers">
+                            <span>Your Emotion-based Playlists</span>
+                         </div>
+                         <div class="Playlists-from-db">
+                            <!-- <div class="sad">
+                                <div class="sad-header">
+                                    <span>Sad</span>
+                                </div>
+                                <div class="playlists-container">
+                                    <div class="playing-card">
+                                       <div class="controls">
+                                        <div class="slidebar slidebars">
+                                        <input type="range" min="0" id="playerranges">
+                                      </div>
+                                      <div class="lower lower-cards" style="font-size: 1.2rem;">
+                                        <i class="ri-skip-back-fill" ></i>
+                                        <i class="ri-play-circle-fill" id="playPauseButton" ></i>
+                                        <i class="ri-skip-forward-fill" ></i>
+                                      </div>
+                                     
+                                       </div>
+                                       <div class="img-play">
+                                            <img src="https://i.scdn.co/image/ab67616d0000b27355c3477805252e4b5c1f41a6" alt="">
+                                       </div>
+                                    </div>
+                                    <div class="playing-card">
+
+                                    </div>
+                                </div>
+                               
+                            </div> -->
+
+                            
+                          
+                            
+                         </div>
+                    </div>
+
+                    <div class="Blogs" id="Blogs">
+                        <div class="main-container">
+                            <div class="heading-blog">
+                                <span >My Diary</span><br>
+                                <span style="color:white;font-size: 1.1rem;">Track your Emotional Journey Day by Day</span>
+                            </div>
+
+                            <div class="content-blog">
+                                <div class="feeling">
+                                    <div class="inner-felling">
+                                       
+                                       <div class="feel-textbox">
+                                        <textarea name="feel-textbox" id="feel-textbox" placeholder="Enter Your Feelings......" cols="30" rows="4">Enter Your feelings</textarea>
+                                        <button id="btn-save-blog">Save</button>
+                                       </div>
+                                    </div>
+                                </div>
+                               <div class="blogs-container container" id="container">
+                                
+                                <div class="blog-main">
+                                   <div class="blog-heading">
+                                   <div class="flex">
+                                    <h3>Feelings at</h3> <span>asdf</span>
+                                    
+                                   </div>
+                                   <div>
+                                    <i class="ri-close-large-line"></i>
+                                   </div>
+                                    
+                                   </div>  
+                                   <div class="blog-content" id="blog-content">
+                                  
+                                   </div>
+                                </div>
+                                
+
+                               </div>
+
+                            </div>
+                         </div>
+                    </div>
+                    
+                  
+
+                   <div class="settings-page" id="settings-page">
+                    <div class="main-container">
+                        <div class="heading-blog">
+                            <span>User Settings</span>
+                        </div>
+                        <div class="content-setting">
+                          <form>
+                            <div class="field">
+                                <label for="Username">Change Username</label>
+                                <input type="text" id="username">
+                            </div>
+                            <div class="field">
+                                <label for="password">Change Password</label>
+                                <input type="password" id="password">
+                            </div>
+
+                            <div class="field">
+                                <label for="DOB">Date Of Birth</label>
+                                <input type="date" id="dob">
+                            </div>
+
+                            <div class="field">
+                                <label for="Username">Change Profile Picture</label>
+                                <input type="file" id="file">
+                            </div>
+                            
+                            <div class="btn">
+                                <button type="submit" id="update-user-settings">Update</button>
+                            </div>
+                          </form>  
+                        </div>
+                     </div>
+                   </div>
+
+
+                   </div>
+        </div>
+    </div>
+    
+    <script type="module" src="{{ url_for('static', filename='js/uiAlert.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/MoodSwing.js') }}"></script>
+    <script  src="{{ url_for('static', filename='js/Spotify.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/Recording.js') }}"></script>
+</body>
+</html>

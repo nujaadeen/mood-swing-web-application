@@ -1,0 +1,154 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+.Name{
+    display: none;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #F9AAD0;
+    height: 100%;
+    width: 100%;
+}
+.inner-content{
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+    
+    height: 100vh;
+    width: 100%;
+}
+
+.Left-form-div,.right-logo-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+}
+
+.Left-form-div{
+    color: white;
+    width: 35%;
+    background-color: #3C0753;
+}
+.right-logo-div{
+    width: 56%;
+    background-color: #F9AAD0;
+}
+
+.Left-form-div .Form{
+    /* background-color: red; */
+    height: 80%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    border-radius: 20px;
+    /* box-shadow: 2px 0px 29px -6px rgba(98, 9, 139, 0.25); */
+}
+
+.upper-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aqua; */
+    margin: 50px 0px 0px 0px;
+    
+}
+
+.upper-icon h2{
+    margin-left: 10px;
+    font-weight: bolder;
+    font-size: 2rem;
+    letter-spacing: 3px;
+}
+.rem{
+    display: flex;
+    /* background-color: red; */
+    width: 80%;
+}
+.rem span{
+    margin-left: 9px;
+}
+.ud8f{
+    margin-top: 5px;
+    font-size: 1.1rem;
+    
+}
+#Register{
+    margin-left: 15px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+fieldset{
+    
+    border: none;
+    width: 70%;
+    height: auto;
+    /* background-color: aqua; */
+    margin-top: 30px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.Field{
+    /* background-color: bisque; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    width: 80%;
+}
+.Field input{
+    border-radius: 7px;
+    width: 100%;
+    height: 41px;
+    padding: 5px 2px;
+    border: 1px solid #a3a3a3;
+    border: none;
+    outline: none;
+}
+
+
+.Field label{
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.btn-login{
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    width: 80%;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    background-color: #720455;
+    box-shadow: 2px 0px 29px -6px rgba(0,0,0,0.75);
+}
+
+
